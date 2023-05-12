@@ -11,14 +11,34 @@
 <form class="m-5">
   <div class="mb-3">
     <label for="Sample" class="form-label">Sample</label>
-    <input type="text" class="form-control" id="Sample" aria-describedby="Input Sample">
-    <div id="Sample" class="form-text">Enter Sample</div>
+    <input type="text" class="form-control" id="sample" aria-describedby="Input Sample" name="sample">
+    <div id="sample" class="form-text">Enter Sample</div>
   </div>
   <div class="mb-3">
     <label for="Sea" class="form-label">Mer</label>
-    <input type="text" class="form-control" id="Sea">
-    <div id="Sea" class="form-text">Mer où le sample a été trouvé</div>
+    <input type="text" class="form-control" id="sea" name="sea">
+    <div id="sea" class="form-text">Mer où le sample a été trouvé</div>
   </div>
+  <div class="mb-3">
+    <label for="Date" class="form-label">Date</label>
+    <input type="text" class="form-control" id="date" aria-describedby="Input Date" name="date">
+    <div id="date" class="form-text">Enter Date</div>
+  </div>
+  <div class="mb-3">
+    <label for="Start_time" class="form-label">Date de début<label>
+    <input type="text" class="form-control" id="start_time" name="start_time">
+    <div id="start_time" class="form-text">Date de début de récupération du Sample (UTC)</div>
+  </div>
+  <div class="mb-3">
+    <label for="Start_latitude" class="form-label">Début latitude</label>
+    <input type="text" class="form-control" id="start_latitude" aria-describedby="Input Start Latitude" name="start_latitude">
+    <div id="start_latitude" class="form-text">Latitude de départ</div>
+  </div>
+  <div class="mb-3">
+    <label for="Start_longitude" class="form-label">Début longitude</label>
+    <input type="text" class="form-control" id="start_longitude" name="start_longitude">
+    <div id="start_longitude" class="form-text">Longitude de départ</div>
+
   <button type="submit" class="btn btn-primary">Submit</button>
 
 </body>
