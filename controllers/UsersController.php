@@ -25,4 +25,10 @@ class UsersController
         $page = "views/Login.phtml";
         require_once "views/Layout.phtml";
     }
+    public function sampling()
+    {
+        $pageTitle = "Sampling";
+        $page = "views/AddSampling.phtml";
+        require_once "views/Layout.phtml";
+    }
 }
