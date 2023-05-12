@@ -7,15 +7,15 @@ use PDO;
 class UsersRepository
 {
 
-    private $bdd;
+    protected PDO $pdo;
 
     public function __construct()
     {
-        $this->bdd = new \PDO("mysql:host=localhost;dbname=shop", "root", "root");
+        $this->pdo = \config\Database::getpdo();
     }
     public function findAll()
     {
-        $select = $this->bdd->prepare("SELECT * FROM users");
+        $select = $this->pdo->prepare("SELECT * FROM user");
         $select->execute();
 
         return $select->fetchAll();
