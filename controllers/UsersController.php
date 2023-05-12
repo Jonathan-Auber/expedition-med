@@ -6,6 +6,12 @@ use models\UsersRepository;
 
 class UsersController
 {
+    private $user;
+
+    public function __construct()
+    {
+        $this->user = new UsersRepository();
+    }
     public function index()
     {
         $pageTitle = "Expedition Med";
