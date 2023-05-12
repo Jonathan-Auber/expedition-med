@@ -19,4 +19,10 @@ class UsersController
         $page = "views/AdminUsers.phtml";
         require_once "views/Layout.phtml";
     }
+    public function login()
+    {
+        $pageTitle = "Connexion";
+        $page = "views/Login.phtml";
+        require_once "views/Layout.phtml";
+    }
 }
