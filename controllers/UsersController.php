@@ -9,7 +9,7 @@ class UsersController
     public function index()
     {
         $pageTitle = "Expedition Med";
-        $page = "views/UsersAccueil.phtml";
+        $page = "views/Index.phtml";
         require_once "views/Layout.phtml";
     }
     public function users()
