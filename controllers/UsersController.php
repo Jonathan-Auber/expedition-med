@@ -4,18 +4,19 @@ namespace controllers;
 
 use models\UsersRepository;
 
-class AdminController
+class UsersController
 {
     public function index()
     {
-        $page = "views/AdminAccueil.phtml";
-        require_once "views/Base.phtml";
+        $pageTitle = "Expedition Med";
+        $page = "views/UsersAccueil.phtml";
+        require_once "views/Layout.phtml";
     }
     public function users()
     {
         $data = new UsersRepository();
         $result = $data->findAll();
         $page = "views/AdminUsers.phtml";
-        require_once "views/Base.phtml";
+        require_once "views/Layout.phtml";
     }
 }

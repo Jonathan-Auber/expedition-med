@@ -2,7 +2,7 @@
 
 namespace config;
 
-use controllers\AdminController;
+use controllers\UsersController;
 
 class Routing
 {
@@ -23,7 +23,7 @@ class Routing
             }
         } else {
 
-            $admin = new AdminController();
+            $admin = new UsersController();
             $admin->index();
         }
     }
