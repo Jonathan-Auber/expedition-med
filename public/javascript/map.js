@@ -1,5 +1,21 @@
-var poi = []
+// Création des icônes pour la carte
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [38, 50],
+        // shadowSize: [50, 64],
+        // iconAnchor: [22, 94],
+        // shadowAnchor: [4, 62],
+        popupAnchor: [-3, -76]
+    }
+});
 
+var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
+    maroonIcon = new LeafIcon({ iconUrl: 'assets/icons/maroon.png' }),
+    redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
+    orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
+    yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
+
+// Conversion de la position en décimal
 function convertDMSToDecimal(degrees, minutes, seconds, direction) {
     // Calcul du degré décimal
     let decimalDegrees = degrees + (minutes / 60) + (seconds / 3600);
@@ -12,7 +28,7 @@ function convertDMSToDecimal(degrees, minutes, seconds, direction) {
     return decimalDegrees;
 }
 
-
+// Récupération des données de prélèvement
 fetch("users/data", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -28,20 +44,17 @@ fetch("users/data", {
         longitude = longitude.split(/[^\d\w]+/);
         console.log(longitude);
         let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3])).toFixed(2);
-        let position = [];
-        position = [latitudeDecimal, longitudeDecimal];
-        var marker = L.marker([latitudeDecimal, longitudeDecimal]);
+        // var marker = L.marker([latitudeDecimal, longitudeDecimal]);
+        var marker = L.marker([latitudeDecimal, longitudeDecimal], {icon: blackIcon});
         marker.addTo(map);
         marker.bindPopup(`
         <b>Echantillon : <a href="#">${element['Sample']}</a></b>
         <p>Mer : ${element['Sea']}</p>
         <p>Date : ${element['Date']}</p>
-        `).openPopup();
+        `);
     });
-    // console.log(response);
 });
 
-// SPLIT
 
 const mediterranean = {
     lat: 40,
