@@ -17,7 +17,6 @@ class UsersController
     }
     public function index()
     {
-        $result = $this->data->findAll();
         $pageTitle = "Expedition Med";
         $page = "views/Index.phtml";
         require_once "views/Layout.phtml";
@@ -45,5 +44,10 @@ class UsersController
         $pageTitle = "Sampling";
         $page = "views/AddSampling.phtml";
         require_once "views/Layout.phtml";
+    }
+    public function data()
+    {
+        $result = $this->data->findAll();
+        echo json_encode($result);
     }
 }
