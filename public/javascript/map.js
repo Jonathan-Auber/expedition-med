@@ -30,7 +30,7 @@ function convertDMSToDecimal(degrees, minutes, seconds, direction) {
 // Récupération des données de tri
 // function getTotal() {
 var totalPlastic = [];
-fetch("data/plastiqueSum", {
+fetch("http://localhost/Hackaton/expedition-med/data/plastiqueSum", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
 }).then(function (response) {
@@ -45,7 +45,7 @@ fetch("data/plastiqueSum", {
 
 
 // Récupération des données de prélèvement
-fetch("users/data", {
+fetch("http://localhost/Hackaton/expedition-med/users/data", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
 }).then(function (response) {
@@ -55,7 +55,6 @@ fetch("users/data", {
     response.forEach(element => {
         let latitude = element['Start_Latitude'];
         latitude = latitude.split(/[^\d\w]+/);
-        console.log(latitude);
         let latitudeDecimal = convertDMSToDecimal(parseInt(latitude[0]), parseInt(latitude[1]), parseInt(latitude[2]), parseInt(latitude[3])).toFixed(2);
         let longitude = element['Start_Longitude'];
         longitude = longitude.split(/[^\d\w]+/);
