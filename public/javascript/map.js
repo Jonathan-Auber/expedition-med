@@ -61,7 +61,17 @@ fetch("users/data", {
         console.log(longitude);
         let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3])).toFixed(2);
         // var marker = L.marker([latitudeDecimal, longitudeDecimal]);
-        var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
+        if (test > 500) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
+        } else if (test >= 300 && test < 500) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: maroonIcon });
+        } else if (test >= 100 && test < 300) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: redIcon });
+        } else if (test >= 50 && test < 100) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: orangeIcon });
+        } else if (test >= 0 && test < 50) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: yellowIcon });
+        }
         marker.addTo(map);
         marker.bindPopup(`
         <b>Echantillon : <a href="#">${element['Sample']}</a></b>
