@@ -43,6 +43,22 @@ function convertDMSToDecimal(degrees, minutes, seconds, direction) {
 
     return decimalDegrees;
 }
+// Récupération des données de tri
+// function getTotal() {
+    var totalPlastic = [];
+    fetch("data/plastiqueSum", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    }).then(function (response) {
+        return response.json();
+    }).then(function (response) {
+        response.forEach(element => {
+            totalPlastic.push(element['total']);
+        });
+        return totalPlastic;
+    });
+// }
+
 
 // Récupération des données de prélèvement
 fetch("users/data", {
@@ -51,6 +67,7 @@ fetch("users/data", {
 }).then(function (response) {
     return response.json();
 }).then(function (response) {
+    let i = 0;
     response.forEach(element => {
         let latitude = element['Start_Latitude'];
         latitude = latitude.split(/[^\d\w]+/);
@@ -58,33 +75,32 @@ fetch("users/data", {
         let latitudeDecimal = convertDMSToDecimal(parseInt(latitude[0]), parseInt(latitude[1]), parseInt(latitude[2]), parseInt(latitude[3])).toFixed(2);
         let longitude = element['Start_Longitude'];
         longitude = longitude.split(/[^\d\w]+/);
-        console.log(longitude);
         let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3])).toFixed(2);
-        var marker = L.marker([latitudeDecimal, longitudeDecimal]);
-        // if (test > 500) {
-        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
-        // } else if (test >= 300 && test < 500) {
-        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: maroonIcon });
-        // } else if (test >= 100 && test < 300) {
-        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: redIcon });
-        // } else if (test >= 50 && test < 100) {
-        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: orangeIcon });
-        // } else if (test >= 0 && test < 50) {
-        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: yellowIcon });
-        // }
+        if (totalPlastic[i] > 500) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
+        } else if (totalPlastic[i] >= 300 && totalPlastic[i] < 500) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: maroonIcon });
+        } else if (totalPlastic[i] >= 100 && totalPlastic[i] < 300) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: redIcon });
+        } else if (totalPlastic[i] >= 50 && totalPlastic[i] < 100) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: orangeIcon });
+        } else if (totalPlastic[i] >= 0 && totalPlastic[i] < 50) {
+            var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: yellowIcon });
+        }
         marker.addTo(map);
         marker.bindPopup(`
         <b>Echantillon : <a href="#">${element['Sample']}</a></b>
         <p>Mer : ${element['Sea']}</p>
         <p>Date : ${element['Date']}</p>
         `);
+        i++;
     });
 });
 
 
 const mediterranean = {
-    lat: 40,
-    lng: 20
+    lat: 41,
+    lng: 9
 }
 
 const zoomLevel = 5;
