@@ -74,10 +74,9 @@ fetch("users/data", {
         marker.addTo(map);
         marker.bindPopup(`
         <b>Echantillon : <a href="data/detailBySample/${element['Sample']}">${element['Sample']}</a></b>
-        <p><em>Microplastique récoltés : ${totalPlastic[i]}</em></p>
+        <p><em>Microplastiques récoltés : ${totalPlastic[i]}</em></p>
         <p>Mer : ${element['Sea']}</p>
         <p>Date : ${element['Date']}</p>
-        <p>Direction du vent : <img class="w-25" style="transform: rotate(${element['Wind_direction']}deg);" src=public/assets/icons/arrow.png></p>
         `);
         i++;
     });
