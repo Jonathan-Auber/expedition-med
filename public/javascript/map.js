@@ -14,6 +14,22 @@ var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
     redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
     orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
     yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
+// Création des icônes pour la carte
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [38, 50],
+        // shadowSize: [50, 64],
+        // iconAnchor: [22, 94],
+        // shadowAnchor: [4, 62],
+        popupAnchor: [-3, -76]
+    }
+});
+
+var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
+    maroonIcon = new LeafIcon({ iconUrl: 'assets/icons/maroon.png' }),
+    redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
+    orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
+    yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
 
 // Conversion de la position en décimal
 function convertDMSToDecimal(degrees, minutes, seconds, direction) {
