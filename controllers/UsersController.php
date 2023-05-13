@@ -13,7 +13,13 @@ class UsersController
     public function __construct()
     {
         $this->user = new UsersRepository();
-        $this->data = new DataRepository();
+        $this->data = new DataRepository( $_POST['sample'] ?? '',
+        $_POST['sea'] ?? '',
+        $_POST['date'] ?? '',
+        $_POST['start_time'] ?? '',
+        $_POST['start_latitude'] ?? '',
+        $_POST['start_longitude'] ?? ''
+    );
     }
     public function index()
     {
