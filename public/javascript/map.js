@@ -5,7 +5,7 @@ var LeafIcon = L.Icon.extend({
         // shadowSize: [50, 64],
         // iconAnchor: [22, 94],
         // shadowAnchor: [4, 62],
-        popupAnchor: [-3, -76]
+        popupAnchor: [-3, -40]
     }
 });
 
@@ -73,10 +73,10 @@ fetch("users/data", {
         }
         marker.addTo(map);
         marker.bindPopup(`
-        <b>Echantillon : <a href="#">${element['Sample']}</a></b>
+        <b>Echantillon : <a href="data/detailBySample/${element['Sample']}">${element['Sample']}</a></b>
+        <p><em>Microplastiques récoltés : ${totalPlastic[i]}</em></p>
         <p>Mer : ${element['Sea']}</p>
         <p>Date : ${element['Date']}</p>
-        <p>Direction du vent : <img class="w-25" style="transform: rotate(${element['Wind_direction']}deg);" src=public/assets/icons/arrow.png></p>
         `);
         i++;
     });
