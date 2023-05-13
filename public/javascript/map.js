@@ -14,6 +14,22 @@ var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
     redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
     orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
     yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
+// Création des icônes pour la carte
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [38, 50],
+        // shadowSize: [50, 64],
+        // iconAnchor: [22, 94],
+        // shadowAnchor: [4, 62],
+        popupAnchor: [-3, -76]
+    }
+});
+
+var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
+    maroonIcon = new LeafIcon({ iconUrl: 'assets/icons/maroon.png' }),
+    redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
+    orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
+    yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
 
 // Conversion de la position en décimal
 function convertDMSToDecimal(degrees, minutes, seconds, direction) {
@@ -44,8 +60,18 @@ fetch("users/data", {
         longitude = longitude.split(/[^\d\w]+/);
         console.log(longitude);
         let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3])).toFixed(2);
-        // var marker = L.marker([latitudeDecimal, longitudeDecimal]);
-        var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
+        var marker = L.marker([latitudeDecimal, longitudeDecimal]);
+        // if (test > 500) {
+        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
+        // } else if (test >= 300 && test < 500) {
+        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: maroonIcon });
+        // } else if (test >= 100 && test < 300) {
+        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: redIcon });
+        // } else if (test >= 50 && test < 100) {
+        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: orangeIcon });
+        // } else if (test >= 0 && test < 50) {
+        //     var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: yellowIcon });
+        // }
         marker.addTo(map);
         marker.bindPopup(`
         <b>Echantillon : <a href="#">${element['Sample']}</a></b>
