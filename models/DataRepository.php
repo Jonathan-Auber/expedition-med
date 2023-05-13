@@ -46,9 +46,25 @@ class DataRepository
               $sample = $_POST['sample'] ?? '';
               $sea = $_POST['sea'] ?? '';
               $date = $_POST['date'] ?? '';
-              $startTime = $_POST['start_time'] ?? '';
-              $startLatitude = $_POST['start_latitude'] ?? '';
-              $startLongitude = $_POST['start_longitude'] ?? '';
+              $startTime = $_POST['startTime'] ?? '';
+              $startLatitude = $_POST['startLatitude'] ?? '';
+              $startLongitude = $_POST['startLongitude'] ?? '';
+              $midLatitude = $_POST['midLatitude'] ?? '';
+              $midLongitude = $_POST['midLongitude'] ?? '';
+              $endLatitude = $_POST['endLatitude'] ?? '';
+              $endLongitude = $_POST['endLongitude'] ?? '';
+              $windForce = $_POST['windForce'] ?? '';
+              $windSpeed = $_POST['windSpeed'] ?? '';
+              $windDirection = $_POST['windDirection'] ?? '';
+              $seaState = $_POST['seaState'] ?? '';
+              $waterTemperature = $_POST['waterTemperature'] ?? '';
+              $boatSpeed = $_POST['boatSpeed'] ?? '';
+              $startFlowmeter = $_POST['startFlowmeter'] ?? '';
+              $endFlowmeter = $_POST['endFlowmeter'] ?? '';
+              $filteredVolume = $_POST['filteredVolume'] ?? '';
+              $filteredDistance = $_POST['filteredDistance'] ?? '';
+              $filtedSurfaceKm = $_POST['filteredSurfaceKm'] ?? '';
+              $commentaires = $_POST['commentaires'] ?? '';
   
               $form = new DataRepository($sample, $sea, $date, $startTime, $startLatitude, $startLongitude);
   
