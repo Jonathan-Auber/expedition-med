@@ -6,9 +6,10 @@ use controllers\UsersController;
 
 class Routing
 {
+
     public function get()
     {
-
+        session_start();
         if (isset($_GET["ctrl"])) {
             $url = htmlspecialchars($_GET["ctrl"]);
 

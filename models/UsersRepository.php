@@ -36,4 +36,10 @@ class UsersRepository
             return false;
         }
     }
+    public function checkConnexion($id)
+    {
+        if (!isset($id)) {
+            return header("Location: /Hackaton/expedition-med/Users/deconnexion");
+        }
+    }
 }

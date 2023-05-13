@@ -37,13 +37,9 @@ class DataRepository
                 // Les champs du formulaire sont valides, vous pouvez effectuer les actions nécessaires
 
                 // Insérer les données dans la table "prelevements"
-                $insert = $this->pdo->prepare("INSERT INTO prelevements (sample, sea, date, startTime, startLatitude, startLongitude, midLatitude, midLongitude, endLatitude, endLongitude, windForce, windSpeed, windDirection, seaState, waterTemperature, boatSpeed, startFlowmeter, endFlowmeter, filteredVolume, filteredDistance, filteredSurfaceKm, commentaires) VALUES (:sample, :sea, :date, :startTime, :startLatitude, :startLongitude, :midLatitude, :midLongitude, :endLatitude, :endLongitude, :windForce, :windSpeed, :windDirection, :seaState, :waterTemperature, :boatSpeed, :startFlowmeter, :endFlowmeter, :filteredVolume, :filteredDistance, :filteredSurfaceKm, :commentaires)");
+                $insert = $this->pdo->prepare("INSERT INTO prelevements (Sample, Sea, Date, Start_Time, Start_Latitude, Start_Longitude, Mid_Latitude, Mid_Longitude, End_Latitude, End_Longitude, Wind_force, Wind_speed, Wind_direction, Sea_state, Water_temperature, Boat_speed, Start_flowmeter, End_flowmeter, Filtered_volume, Filtered_distance, Filtered_surface, Filtered_surface_km, Commentaires) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-                foreach ($data as $key => $value) {
-                    $insert->bindParam(':' . $key, $data[$key]);
-                }
-
-                $insert->execute();
+                $insert->execute(array($data["sample"], $data["sea"], $data["date"], $data["startTime"], $data["startLatitude"], $data["startLongitude"], $data["midLatitude"], $data["midLongitude"], $data["endLatitude"], $data["endLongitude"], $data["windForce"], $data["windSpeed"], $data["windDirection"], $data["seaState"], $data["waterTemperature"], $data["boatSpeed"], $data["startFlowMeter"], $data["endFlowMeter"], $data["filteredVolume"], $data["filteredDistance"], $data["filteredSurface"], $data["filteredSurfaceKm"], $data["commentaires"]));
 
                 // apres insertion ?
 
