@@ -20,4 +20,20 @@ class UsersRepository
 
         return $select->fetchAll();
     }
+    public function find($email)
+    {
+        $select = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
+        $select->execute(array($email));
+
+        return $select->fetch();
+    }
+    public function checkPassword($password, $result)
+    {
+        if (password_verify($password, $result["password"])) {
+            $_SESSION["id"] = $result["id"];
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
