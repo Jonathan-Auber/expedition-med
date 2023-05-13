@@ -45,7 +45,7 @@ fetch("users/data", {
         console.log(longitude);
         let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3])).toFixed(2);
         // var marker = L.marker([latitudeDecimal, longitudeDecimal]);
-        var marker = L.marker([latitudeDecimal, longitudeDecimal], {icon: blackIcon});
+        var marker = L.marker([latitudeDecimal, longitudeDecimal], { icon: blackIcon });
         marker.addTo(map);
         marker.bindPopup(`
         <b>Echantillon : <a href="#">${element['Sample']}</a></b>
