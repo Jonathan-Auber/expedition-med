@@ -9,27 +9,11 @@ var LeafIcon = L.Icon.extend({
     }
 });
 
-var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
-    maroonIcon = new LeafIcon({ iconUrl: 'assets/icons/maroon.png' }),
-    redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
-    orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
-    yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
-// Création des icônes pour la carte
-var LeafIcon = L.Icon.extend({
-    options: {
-        iconSize: [38, 50],
-        // shadowSize: [50, 64],
-        // iconAnchor: [22, 94],
-        // shadowAnchor: [4, 62],
-        popupAnchor: [-3, -76]
-    }
-});
-
-var blackIcon = new LeafIcon({ iconUrl: 'assets/icons/black.png' }),
-    maroonIcon = new LeafIcon({ iconUrl: 'assets/icons/maroon.png' }),
-    redIcon = new LeafIcon({ iconUrl: 'assets/icons/red.png' }),
-    orangeIcon = new LeafIcon({ iconUrl: 'assets/icons/orange.png' }),
-    yellowIcon = new LeafIcon({ iconUrl: 'assets/icons/yellow.png' });
+var blackIcon = new LeafIcon({ iconUrl: 'public/assets/icons/black.png' }),
+    maroonIcon = new LeafIcon({ iconUrl: 'public/assets/icons/maroon.png' }),
+    redIcon = new LeafIcon({ iconUrl: 'public/assets/icons/red.png' }),
+    orangeIcon = new LeafIcon({ iconUrl: 'public/assets/icons/orange.png' }),
+    yellowIcon = new LeafIcon({ iconUrl: 'public/assets/icons/yellow.png' });
 
 // Conversion de la position en décimal
 function convertDMSToDecimal(degrees, minutes, seconds, direction) {
@@ -45,18 +29,18 @@ function convertDMSToDecimal(degrees, minutes, seconds, direction) {
 }
 // Récupération des données de tri
 // function getTotal() {
-    var totalPlastic = [];
-    fetch("data/plastiqueSum", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    }).then(function (response) {
-        return response.json();
-    }).then(function (response) {
-        response.forEach(element => {
-            totalPlastic.push(element['total']);
-        });
-        return totalPlastic;
+var totalPlastic = [];
+fetch("data/plastiqueSum", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+}).then(function (response) {
+    return response.json();
+}).then(function (response) {
+    response.forEach(element => {
+        totalPlastic.push(element['total']);
     });
+    return totalPlastic;
+});
 // }
 
 
@@ -92,6 +76,7 @@ fetch("users/data", {
         <b>Echantillon : <a href="#">${element['Sample']}</a></b>
         <p>Mer : ${element['Sea']}</p>
         <p>Date : ${element['Date']}</p>
+        <p>Direction du vent : <img class="w-25" style="transform: rotate(${element['Wind_direction']}deg);" src=public/assets/icons/arrow.png></p>
         `);
         i++;
     });
@@ -103,7 +88,7 @@ const mediterranean = {
     lng: 9
 }
 
-const zoomLevel = 5;
+const zoomLevel = 6;
 
 var map = L.map('map').setView([mediterranean.lat, mediterranean.lng], zoomLevel);
 
