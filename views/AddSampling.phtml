@@ -1,25 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
 <form class="m-5">
   <div class="mb-3">
     <label for="Sample" class="form-label">Sample</label>
-    <input type="text" class="form-control" id="Sample" aria-describedby="Input Sample">
-    <div id="Sample" class="form-text">Enter Sample</div>
+    <input type="text" class="form-control" id="sample" aria-describedby="Input Sample" name="sample">
+    <div id="sample" class="form-text">Renseignez le Sample</div>
   </div>
   <div class="mb-3">
     <label for="Sea" class="form-label">Mer</label>
-    <input type="text" class="form-control" id="Sea">
-    <div id="Sea" class="form-text">Mer où le sample a été trouvé</div>
+    <input type="text" class="form-control" id="sea" name="sea">
+    <div id="sea" class="form-text">Mer où le sample a été trouvé</div>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <div class="mb-3">
+    <label for="Date" class="form-label">Date</label>
+    <input type="text" class="form-control" id="date" aria-describedby="Input Date" name="date">
+    <div id="date" class="form-text">Entrez la Date</div>
+  </div>
+  <div class="mb-3">
+    <label for="Start_time" class="form-label">Date de début</label>
+    <input type="text" class="form-control" id="start_time" name="start_time">
+    <div id="start_time" class="form-text">Date de début de récupération du Sample (UTC)</div>
+  </div>
+  <div class="mb-3">
+    <label for="Start_latitude" class="form-label">Début latitude</label>
+    <input type="text" class="form-control" id="start_latitude" aria-describedby="Input Start Latitude" name="start_latitude">
+    <div id="start_latitude" class="form-text">Latitude de départ</div>
+  </div>
+  <div class="mb-3">
+    <label for="Start_longitude" class="form-label">Début longitude</label>
+    <input type="text" class="form-control" id="start_longitude" name="start_longitude">
+    <div id="start_longitude" class="form-text">Longitude de départ</div>
+    <div class="mb-3">
+      <label for="Milieu_latitude" class="form-label">Milieu latitude</label>
+      <input type="text" class="form-control" id="milieu_latitude" aria-describedby="Input Milieu Latitude" name="milieu_latitude">
+      <div id="milieu_latitude" class="form-text">Latitude du milieu</div>
+    </div>
+    <div class="mb-3">
+      <label for="Milieu_longitude" class="form-label">Milieu longitude</label>
+      <input type="text" class="form-control" id="milieu_longitude" name="milieu_longitude">
+      <div id="milieu_longitude" class="form-text">Longitude du milieu</div>
+      <div class="mb-3">
+        <label for="Fin_latitude" class="form-label">Fin latitude</label>
+        <input type="text" class="form-control" id="fin_latitude" aria-describedby="Input Fin Latitude" name="fin_latitude">
+        <div id="fin_latitude" class="form-text">Latitude de fin</div>
+      </div>
+      <div class="mb-3">
+        <label for="Fin_longitude" class="form-label">Fin longitude</label>
+        <input type="text" class="form-control" id="fin_longitude" name="fin_longitude">
+        <div id="fin_longitude" class="form-text">Longitude de fin</div>
+        <div class="mb-3">
+          <label for="WindForce" class="form-label">Force du Vent</label>
+          <input type="text" class="form-control" id="wind_force" name="wind_force">
+          <div id="wind_force" class="form-text">Force du vent</div>
+          <div class="mb-3">
+            <label for="WindSpeed" class="form-label">Vitesse du Vent</label>
+            <input type="text" class="form-control" id="vitesse_vent" name="vitesse_vent">
+            <div id="vitesse_vent" class="form-text">Vitesse du Vent</div>
+            <div class="mb-3">
+              <label for="WindDirection" class="form-label">Direction du Vent</label>
+              <input type="text" class="form-control" id="direcition_vent" aria-describedby="Input Direction Vent" name="direction_vent">
+              <div id="direction_vent" class="form-text">Direction du Vent</div>
+            </div>
 
-</body>
-</html>
+
+
+            <div class="text-center"><button type="submit" class="btn btn-primary">Valider</button></div>
