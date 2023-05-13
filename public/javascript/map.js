@@ -20,18 +20,23 @@ fetch("users/data", {
     return response.json();
 }).then(function (response) {
     response.forEach(element => {
-        let latitude = element['Start Latitude'];
+        let latitude = element['Start_Latitude'];
         latitude = latitude.split(/[^\d\w]+/);
         console.log(latitude);
-        let latitudeDecimal = convertDMSToDecimal(parseInt(latitude[0]), parseInt(latitude[1]), parseInt(latitude[2]), parseInt(latitude[3]));
-        let longitude = element['Start Longitude'];
+        let latitudeDecimal = convertDMSToDecimal(parseInt(latitude[0]), parseInt(latitude[1]), parseInt(latitude[2]), parseInt(latitude[3])).toFixed(2);
+        let longitude = element['Start_Longitude'];
         longitude = longitude.split(/[^\d\w]+/);
         console.log(longitude);
-        let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3]));
+        let longitudeDecimal = convertDMSToDecimal(parseInt(longitude[0]), parseInt(longitude[1]), parseInt(longitude[2]), parseInt(longitude[3])).toFixed(2);
         let position = [];
         position = [latitudeDecimal, longitudeDecimal];
         var marker = L.marker([latitudeDecimal, longitudeDecimal]);
         marker.addTo(map);
+        marker.bindPopup(`
+        <b>Echantillon : <a href="#">${element['Sample']}</a></b>
+        <p>Mer : ${element['Sea']}</p>
+        <p>Date : ${element['Date']}</p>
+        `).openPopup();
     });
     // console.log(response);
 });
