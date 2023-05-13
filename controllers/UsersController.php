@@ -50,7 +50,7 @@ class UsersController
         $result = $this->data->findAll();
         echo json_encode($result);
     }
-    public function deconnexion()
+    public function logout()
     {
         session_destroy();
         return header('Location: /Hackaton/expedition-med');
