@@ -72,4 +72,32 @@ class DataRepository
 
         return $select->fetchAll();
     }
+    public function findTypeBySample($id)
+    {
+        $select = $this->pdo->prepare('select Type, SUM(number) as "total" from tri where sample = ? group by Type');
+        $select->execute(array($id));
+
+        return $select->fetchAll();
+    }
+    public function findColorBySample($id)
+    {
+        $select = $this->pdo->prepare('select Color, SUM(number) as "total" from tri where sample = ? group by Color');
+        $select->execute(array($id));
+
+        return $select->fetchAll();
+    }
+    public function findSizeBySample($id)
+    {
+        $select = $this->pdo->prepare('select Size, SUM(number) as "total" from tri where sample = ? group by Size');
+        $select->execute(array($id));
+
+        return $select->fetchAll();
+    }
+    public function findDetailBySample($id)
+    {
+        $select = $this->pdo->prepare('SELECT Water_temperature, Filtered_volume, Commentaires, Sea_state, Start_time, Wind_force FROM prelevements WHERE Sample = ?');
+        $select->execute(array($id));
+
+        return $select->fetch();
+    }
 }

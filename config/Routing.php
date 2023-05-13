@@ -10,6 +10,7 @@ class Routing
     public function get()
     {
         session_start();
+
         if (isset($_GET["ctrl"])) {
             $url = htmlspecialchars($_GET["ctrl"]);
 
@@ -18,7 +19,12 @@ class Routing
             if (isset($newUrl[1])) {
                 $controller = new $controllerName();
                 $methodName = strtolower($newUrl[1]);
-                $controller->$methodName();
+                if (isset($newUrl[2])) {
+                    $id = $newUrl[2];
+                    $controller->$methodName($id);
+                } else {
+                    $controller->$methodName();
+                }
             } else {
                 echo "erreur 404";
             }

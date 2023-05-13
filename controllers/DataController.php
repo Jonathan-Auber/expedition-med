@@ -56,7 +56,14 @@ class DataController
     $this->data->formulairePrelevement();
     return header('Location: /Hackaton/expedition-med/Data/tri');
   }
-  public function detailPrelevement()
+  public function detailBySample($id)
   {
+    $resultT = $this->data->findTypeBySample($id);
+    $resultC = $this->data->findColorBySample($id);
+    $resultS = $this->data->findSizeBySample($id);
+    $details = $this->data->findDetailBySample($id);
+    $pageTitle = "Expedition Med";
+    $page = "views/DetailBySample.phtml";
+    require_once "views/Layout.phtml";
   }
 }
