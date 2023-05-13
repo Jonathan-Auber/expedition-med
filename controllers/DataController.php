@@ -2,60 +2,50 @@
 
 namespace controllers;
 
-use models\UsersRepository;
+use models\DataRepository;
 
 class DataController
 {
-    private $sample;
-    private $sea;
-    private $date;
-    private $startTime;
-    private $startLatitude;
-    private $startLongitude;
-    
-    public function __construct($sample, $sea, $date, $startTime, $startLatitude, $startLongitude) {
-       
-
-       // Formulaire Prelevements
-       $this->sample = $sample;
-       $this->sea = $sea;
-       $this->date = $date;
-       $this->startTime = $startTime;
-       $this->startLatitude = $startLatitude;
-       $this->startLongitude = $startLongitude;
-
+  private $data;
+  public function __construct()
+  {
+    $this->data = new DataRepository();
+  }
+  public function tri()
+  {
+    $pageTitle = "Expedition Med";
+    $page = "views/AddTri.phtml";
+    require_once "views/Layout.phtml";
+  }
+  public function select()
+  {
+    $result = $this->data->findAllSample();
+    echo json_encode($result);
+  }
+  public function triPost()
+  {
+    for ($i = 1; $i <= count($_POST) / 5; $i++) {
+      $sous_tableau = array(
+        "sample" => $_POST["sample_" . $i],
+        "size" => $_POST["size_" . $i],
+        "type" => $_POST["type_" . $i],
+        "color" => $_POST["color_" . $i],
+        "number" => $_POST["number_" . $i]
+      );
+      $tableau[] = $sous_tableau;
     }
-
-    public function validationPrelevement() {
-      // verif de champ de formulaire remplis
-    if(empty($sample) || empty($sea) || empty($date) || empty($startTime) || empty($startLatitude) || empty($startLongitude))
-    {
-      echo "Champs manquants pour le prelevement !";
+    foreach ($tableau as $tableau2) {
+      $this->data->addTri($tableau2["sample"], $tableau2["size"], $tableau2["type"], $tableau2["color"], $tableau2["number"]);
     }
-
-
-
-    }
-
-    public function formulairePrelevement() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') 
-        {
-           
-            $sample = $_POST['sample'] ?? '';
-            $sea = $_POST['sea'] ?? '';
-            $date = $_POST['date'] ?? '';
-            $startTime = $_POST['start_time'] ?? '';
-            $startLatitude = $_POST['start_latitude'] ?? '';
-            $startLongitude = $_POST['start_longitude'] ?? '';
-
-            $form = new DataController($sample, $sea, $date, $startTime, $startLatitude, $startLongitude);
-
-            
-            $form->validationPrelevement();
-
-
-        }
-        
-
-    }
+    return header('Location: /Hackaton/expedition-med/index');
+  }
+  public function plastiqueSum()
+  {
+    $result = $this->data->numberBySample();
+    echo json_encode($result);
+  }
+  public function PushPrelevement()
+  {
+    $this->data->formulairePrelevement();
+  }
 }
