@@ -1,4 +1,4 @@
-fetch("http://localhost/Hackaton/expedition-med/Data/select", {
+fetch("Data/select", {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json'

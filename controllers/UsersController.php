@@ -32,7 +32,7 @@ class UsersController
         $result = $this->user->find($_POST["email"]);
         $message = $this->user->checkPassword($_POST["password"], $result);
         if ($message) {
-            header("Location: /Hackaton/expedition-med/Users/sampling");
+            header("Location: /expedition_med/Users/sampling");
         } else {
             $erreur = "Mauvais mot de passe";
             $page = "views/Login.phtml";
@@ -53,6 +53,6 @@ class UsersController
     public function logout()
     {
         session_destroy();
-        return header('Location: /Hackaton/expedition-med');
+        return header('Location: /expedition_med/Users/index');
     }
 }
