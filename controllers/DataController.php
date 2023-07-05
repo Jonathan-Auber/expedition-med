@@ -35,7 +35,7 @@ class DataController
     foreach ($tableau as $tableau2) {
       $this->data->addTri($tableau2["sample"], $tableau2["size"], $tableau2["type"], $tableau2["color"], $tableau2["number"]);
     }
-    return header('Location: /Hackaton/expedition-med/index');
+    return header('Location: /expedition_med/Users/index');
   }
   public function plastiqueSum()
   {
@@ -45,7 +45,7 @@ class DataController
   public function PushPrelevement()
   {
     $this->data->formulairePrelevement();
-    return header('Location: /Hackaton/expedition-med/Data/tri');
+    return header('Location: /expedition_med/Data/tri');
   }
   public function detailBySample($id)
   {

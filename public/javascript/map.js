@@ -30,7 +30,7 @@ function convertDMSToDecimal(degrees, minutes, seconds, direction) {
 // Récupération des données de tri
 // function getTotal() {
 var totalPlastic = [];
-fetch("http://localhost/Hackaton/expedition-med/data/plastiqueSum", {
+fetch("Data/plastiqueSum", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
 }).then(function (response) {
@@ -45,7 +45,7 @@ fetch("http://localhost/Hackaton/expedition-med/data/plastiqueSum", {
 
 
 // Récupération des données de prélèvement
-fetch("http://localhost/Hackaton/expedition-med/users/data", {
+fetch("Users/data", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
 }).then(function (response) {
