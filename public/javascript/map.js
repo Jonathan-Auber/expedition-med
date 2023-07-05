@@ -45,7 +45,7 @@ fetch("Data/plastiqueSum", {
 
 
 // Récupération des données de prélèvement
-fetch("Users/data", {
+fetch("Data/data", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
 }).then(function (response) {

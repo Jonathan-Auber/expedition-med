@@ -32,27 +32,16 @@ class UsersController
         $result = $this->user->find($_POST["email"]);
         $message = $this->user->checkPassword($_POST["password"], $result);
         if ($message) {
-            header("Location: /expedition_med/Users/sampling");
+            header("Location: /expedition-med/data/sampling");
         } else {
             $erreur = "Mauvais mot de passe";
             $page = "views/Login.phtml";
             require_once "views/Layout.phtml";
         }
     }
-    public function sampling()
-    {
-        $pageTitle = "Sampling";
-        $page = "views/AddSampling.phtml";
-        require_once "views/Layout.phtml";
-    }
-    public function data()
-    {
-        $result = $this->data->findAll();
-        echo json_encode($result);
-    }
     public function logout()
     {
         session_destroy();
-        return header('Location: /expedition_med/Users/index');
+        return header('Location: /expedition-med/Users/index');
     }
 }

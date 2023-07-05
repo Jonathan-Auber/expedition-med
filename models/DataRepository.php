@@ -31,7 +31,7 @@ class DataRepository
     public function formulairePrelevement()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = $post;
+            $data = $_POST;
 
             if ($this->validationPrelevement($data)) {
                 // Les champs du formulaire sont valides, vous pouvez effectuer les actions nécessaires
@@ -53,6 +53,26 @@ class DataRepository
 
         return $select->fetchAll();
     }
+
+    public function findAllBySample($id)
+    {
+        $select = $this->pdo->prepare("SELECT * FROM prelevements WHERE Sample = ?");
+        $select->execute(array($id));
+
+        return $select->fetch();
+    }
+
+    public function editBySample($id, $post)
+    {
+        $insert = $this->pdo->prepare("UPDATE prelevements SET Sample = ?, Sea = ?, Date = ?, Start_Time = ?, Start_Latitude = ?, Start_Longitude = ?, Mid_Latitude = ?, Mid_Longitude = ?, End_Latitude = ?, End_Longitude = ?, Wind_force = ?, Wind_speed = ?, Wind_direction = ?, Sea_state = ?, Water_temperature = ?, Boat_speed = ?, Start_flowmeter = ?, End_flowmeter = ?, Filtered_volume = ?, Filtered_distance = ?, Filtered_surface = ?, Filtered_surface_km = ?, Commentaires = ? WHERE Sample = ?");
+        $insert->execute(array($post["sample"], $post["sea"], $post["date"], $post["startTime"], $post["startLatitude"], $post["startLongitude"], $post["midLatitude"], $post["midLongitude"], $post["endLatitude"], $post["endLongitude"], $post["windForce"], $post["windSpeed"], $post["windDirection"], $post["seaState"], $post["waterTemperature"], $post["boatSpeed"], $post["startFlowMeter"], $post["endFlowMeter"], $post["filteredVolume"], $post["filteredDistance"], $post["filteredSurface"], $post["filteredSurfaceKm"], $post["commentaires"], $id));
+    }
+
+    public function deleteBySample($id)
+    {
+        $delete = $this->pdo->prepare("DELETE FROM prelevements WHERE Sample = ?");
+        $delete->execute(array($id));
+    }
     public function findAllSample()
     {
         $select = $this->pdo->prepare("SELECT Sample FROM prelevements");
@@ -73,6 +93,41 @@ class DataRepository
             $tableau[] = $sous_tableau;
         }
         return $tableau;
+    }
+
+    public function triBySample($id)
+    {
+        $select = $this->pdo->prepare("SELECT * FROM tri WHERE Sample = ?");
+        $select->execute(array($id));
+
+        return $select->fetchAll();
+    }
+    public function findAllTri()
+    {
+        $select = $this->pdo->prepare("SELECT * FROM tri");
+        $select->execute();
+
+        return $select->fetchAll();
+    }
+
+    public function findByTri($id)
+    {
+        $select = $this->pdo->prepare("SELECT * FROM tri WHERE id = ?");
+        $select->execute(array($id));
+
+        return $select->fetch();
+    }
+
+    public function editByTri($id, $post)
+    {
+        $insert = $this->pdo->prepare("UPDATE tri SET Sample = ?, Size = ?, Type = ?, Color = ?, Number = ? WHERE id = ?");
+        $insert->execute(array($post["sample"], $post["size"], $post["type"], $post["color"], $post["number"], $id));
+    }
+
+    public function deleteByTri($id)
+    {
+        $delete = $this->pdo->prepare("DELETE FROM tri WHERE id = ?");
+        $delete->execute(array($id));
     }
     public function addTri($sample, $size, $type, $color, $number)
     {

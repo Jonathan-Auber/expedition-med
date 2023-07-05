@@ -15,14 +15,14 @@ class UsersRepository
     }
     public function findAll()
     {
-        $select = $this->pdo->prepare("SELECT * FROM users");
+        $select = $this->pdo->prepare("SELECT * FROM user");
         $select->execute();
 
         return $select->fetchAll();
     }
     public function find($email)
     {
-        $select = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
+        $select = $this->pdo->prepare("SELECT * FROM user WHERE email = ?");
         $select->execute(array($email));
 
         return $select->fetch();
@@ -39,7 +39,7 @@ class UsersRepository
     public function checkConnexion($id)
     {
         if (!isset($id)) {
-            return header("Location: /Users/deconnexion");
+            return header("Location: /expedition-med/users/logout");
         }
     }
 }
