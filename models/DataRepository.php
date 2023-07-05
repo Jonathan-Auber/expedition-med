@@ -31,7 +31,7 @@ class DataRepository
     public function formulairePrelevement()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $data = $_POST;
+            $data = $post;
 
             if ($this->validationPrelevement($data)) {
                 // Les champs du formulaire sont valides, vous pouvez effectuer les actions nécessaires
@@ -59,6 +59,20 @@ class DataRepository
         $select->execute();
 
         return $select->fetchAll();
+    }
+    public function tableTri($post)
+    {
+        for ($i = 1; $i <= count($post) / 5; $i++) {
+            $sous_tableau = array(
+                "sample" => $post["sample_" . $i],
+                "size" => $post["size_" . $i],
+                "type" => $post["type_" . $i],
+                "color" => $post["color_" . $i],
+                "number" => $post["number_" . $i]
+            );
+            $tableau[] = $sous_tableau;
+        }
+        return $tableau;
     }
     public function addTri($sample, $size, $type, $color, $number)
     {

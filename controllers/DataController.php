@@ -31,16 +31,7 @@ class DataController
   public function triPost()
   {
     $this->user->checkConnexion($_SESSION["id"]);
-    for ($i = 1; $i <= count($_POST) / 5; $i++) {
-      $sous_tableau = array(
-        "sample" => $_POST["sample_" . $i],
-        "size" => $_POST["size_" . $i],
-        "type" => $_POST["type_" . $i],
-        "color" => $_POST["color_" . $i],
-        "number" => $_POST["number_" . $i]
-      );
-      $tableau[] = $sous_tableau;
-    }
+    $tableau = $this->data->tableTri($_POST);
     foreach ($tableau as $tableau2) {
       $this->data->addTri($tableau2["sample"], $tableau2["size"], $tableau2["type"], $tableau2["color"], $tableau2["number"]);
     }
